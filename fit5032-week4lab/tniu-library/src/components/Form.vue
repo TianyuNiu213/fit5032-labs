@@ -78,7 +78,7 @@
           </div>
         </form>
 
-        <div class="row mt-5" v-if="submittedCards.length">
+        <!-- <div class="row mt-5" v-if="submittedCards.length">
           <div class="d-flex justify-content-start">
             <div
               v-for="(card, index) in submittedCards"
@@ -98,6 +98,21 @@
               </ul>
             </div>
           </div>
+        </div> -->
+        <div class="row">
+          <div class="col-12">
+            <DataTable :value="submittedCards">
+              <Column field="username" header="Username"></Column>
+              <Column field="password" header="Password"></Column>
+              <Column
+                field="isAustralian"
+                header="Australian Resident?"
+                :body="booleanTemplate"
+              ></Column>
+              <Column field="gender" header="Gender"></Column>
+              <Column field="reason" header="Reason for joining"></Column>
+            </DataTable>
+          </div>
         </div>
       </div>
     </div>
@@ -105,6 +120,11 @@
 </template>
 
 <script setup>
+
+import DataTable from 'primevue/datatable'
+import Column from 'primevue/column'
+import ColumnGroup from 'primevue/columngroup'
+import Row from 'primevue/row'
 import { ref } from 'vue'
 
 const formData = ref({
@@ -116,6 +136,10 @@ const formData = ref({
 })
 
 const submittedCards = ref([])
+const booleanTemplate = (rowData) => {
+  return rowData.isAustralian ? 'Yes' : 'No'
+}
+
 const errors = ref({
   username: null,
   password: null,
