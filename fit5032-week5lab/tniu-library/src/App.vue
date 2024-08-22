@@ -1,7 +1,5 @@
 <script setup>
-//import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
-import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
 </script>
 
 <template>
@@ -10,37 +8,45 @@ import LibraryRegistrationForm from './components/LibraryRegistrationForm.vue'
     <BHeader />
   </header>
 
-  <main>
-    <LibraryRegistrationForm />
+  <main class="container">
+    <router-view></router-view>
   </main>
 </div>
 </template>
 
-<style scoped>
-/* header {
-  line-height: 1.5;
+<style>
+/* Center the container and header links */
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 80vw;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center; /* Center align the text content */
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.navbar {
+  display: flex;
+  justify-content: center; /* Center align the navbar items */
+  box-shadow: 0 4px 6px -6px #222;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.navbar-brand {
+  font-weight: bold;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.nav-item .nav-link {
+  color: #275fda;
+  padding: 10px; /* Add padding for spacing between links */
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-} */
+.nav-item .nav-link:hover {
+  color: #0b53da;
+}
+
+/* Ensure header items are centered */
+header {
+  display: flex;
+  justify-content: center; /* Center the content in the header */
+  padding: 20px 0; /* Add padding to separate the header from the content */
+}
 </style>
