@@ -49,4 +49,7 @@ header {
   justify-content: center; /* Center the content in the header */
   padding: 20px 0; /* Add padding to separate the header from the content */
 }
+.about{
+  text-align: center;
+}
 </style>
