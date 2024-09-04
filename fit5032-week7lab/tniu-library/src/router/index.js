@@ -5,6 +5,11 @@ import LoginView from '../views/LoginView.vue'
 import { useAuth } from './authenticate'
 
 const routes = [
+  {
+    path: '/FireLogin',
+    name: 'FireLogin',
+    component: FirebaseSigninView,
+  },
   { path: '/', name: 'Home', component: HomeView },
   { path: '/about', name: 'About', component: AboutView },
   { path: '/login', name: 'Login', component: LoginView },
