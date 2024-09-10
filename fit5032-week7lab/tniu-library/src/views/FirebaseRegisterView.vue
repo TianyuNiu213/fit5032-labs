@@ -42,7 +42,7 @@ const register = () => {
       successMessage.value = "Registration successful! Redirecting to login...";
       setTimeout(() => {
         router.push("/FireLogin"); // Redirect after 2 seconds
-      }, 2000);
+      }, 3000);
     })
     .catch((error) => {
       console.error("Error code:", error.code);

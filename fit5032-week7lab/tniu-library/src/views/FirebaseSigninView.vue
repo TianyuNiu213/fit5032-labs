@@ -1,27 +1,28 @@
 <template>
-<div>
-  <h1>Sign in</h1>
-  <p>
-    <input 
-      type="email" 
-      placeholder="Email" 
-      v-model="email" 
-      required 
-    />
-  </p>
-  <p>
-    <input 
-      type="password" 
-      placeholder="Password" 
-      v-model="password" 
-      required 
-    />
-  </p>
-  <p>
-    <button @click="signin">Sign in via Firebase</button>
-  </p>
-  <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
-</div>
+  <div>
+    <h1>Sign in</h1>
+    <p>
+      <input 
+        type="email" 
+        placeholder="Email" 
+        v-model="email" 
+        required 
+      />
+    </p>
+    <p>
+      <input 
+        type="password" 
+        placeholder="Password" 
+        v-model="password" 
+        required 
+      />
+    </p>
+    <p>
+      <button @click="signin">Sign in via Firebase</button>
+    </p>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <p v-if="successMessage" class="success-message">{{ successMessage }}</p> <!-- Success Message -->
+  </div>
 </template>
 
 <script setup>
@@ -32,10 +33,15 @@ import { useRouter } from "vue-router";
 const email = ref("");
 const password = ref("");
 const errorMessage = ref(null);
+const successMessage = ref(null); // New state for success message
 const router = useRouter();
 const auth = getAuth();
 
 const signin = () => {
+  // Reset messages
+  errorMessage.value = null;
+  successMessage.value = null;
+
   // Check if email or password is empty
   if (!email.value || !password.value) {
     errorMessage.value = "Please enter both email and password.";
@@ -46,7 +52,10 @@ const signin = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
       console.log("Firebase Sign-in Successful!");
-      router.push("/"); // Redirect to home page on successful sign-in
+      successMessage.value = "Login successful! Redirecting..."; // Set success message
+      setTimeout(() => {
+        router.push("/"); // Redirect to home page on successful sign-in after 2 seconds
+      }, 2000);
       console.log(auth.currentUser); // Check the current signed-in user
     })
     .catch((error) => {
@@ -74,6 +83,11 @@ const handleAuthErrors = (code) => {
 <style scoped>
 .error-message {
   color: red;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
   margin-top: 10px;
 }
 </style>
