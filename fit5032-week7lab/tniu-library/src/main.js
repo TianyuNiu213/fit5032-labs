@@ -7,27 +7,24 @@ import router from './router'
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDv4-kYz_JYAF20i9jCuxjfbHojpzRH8gg",
+    authDomain: "fit5032-week7-tniulibrary.firebaseapp.com",
+    projectId: "fit5032-week7-tniulibrary",
+    storageBucket: "fit5032-week7-tniulibrary.appspot.com",
+    messagingSenderId: "223266453669",
+    appId: "1:223266453669:web:9cdc6b271adb2c5243754c"
+  };
+  
+  // Initialize Firebase
+initializeApp(firebaseConfig);
 
 const app = createApp(App)
 app.use(PrimeVue, { theme: { preset: Aura } })
 app.use(router)
 
 app.mount('#app')
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDp3hYB_4TsNfcd6SS8V140AtVte-ivMJM",
-  authDomain: "week7-tianyu.firebaseapp.com",
-  projectId: "week7-tianyu",
-  storageBucket: "week7-tianyu.appspot.com",
-  messagingSenderId: "636031975854",
-  appId: "1:636031975854:web:cbce1cc49b3f7971ef483f"
-};
-
-// Initialize Firebase
-initializeApp(firebaseConfig);
