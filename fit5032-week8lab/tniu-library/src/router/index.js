@@ -5,6 +5,8 @@ import FirebaseSigninView from '../views/FirebaseSigninView.vue';
 import FirebaseRegisterView from '../views/FirebaseRegisterView.vue';
 import AdminDashboard from '../views/AdminDashboard.vue';
 import LoginView from '../views/LoginView.vue';
+import AddBookView from '../views/AddBookView.vue';
+import BookListView from '../views/BookListView.vue';
 import { useAuth } from './authenticate';
 
 const routes = [
@@ -12,6 +14,8 @@ const routes = [
   { path: '/about', name: 'About', component: AboutView },
   { path: '/FireLogin', name: 'FireLogin', component: FirebaseSigninView },
   { path: '/FireRegister', name: 'FireRegister', component: FirebaseRegisterView },
+  { path: '/addbook', name: 'AddBook', component: AddBookView},
+  { path: '/booklist', name: 'Booklist', component: BookListView},
   { path: '/login', name: 'Login', component: LoginView },
   { path: '/admin-dashboard', name: 'AdminDashboard', component: AdminDashboard, meta: { requiresAdmin: true } },
 ];

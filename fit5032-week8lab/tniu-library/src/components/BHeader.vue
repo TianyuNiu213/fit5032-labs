@@ -19,10 +19,19 @@
           <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link>
         </li>
 
+        <li class="nav-item">
+          <router-link to="/addBook" class="nav-link" active-class="active">Add Book</router-link>
+        </li>
+
+        <li class="nav-item">
+          <router-link to="/bookList" class="nav-link" active-class="active">Book List</router-link>
+        </li>
+
         <!-- Conditionally render Log in/Log out based on authentication status -->
         <li class="nav-item" v-if="!isAuthenticated">
           <router-link to="/login" class="nav-link" active-class="active"> Log in </router-link>
         </li>
+        
         <li class="nav-item" v-else>
           <button class="nav-link" @click="handleLogout">Log out</button>
         </li>
