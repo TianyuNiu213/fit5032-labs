@@ -1,22 +1,23 @@
-import {
-    ref
-} from 'vue';
-import router from './index';
+import { ref } from 'vue';
 
 const isAuthenticated = ref(false);
+const userRole = ref(null); // Track user role (admin or regular user)
 
 export function useAuth() {
-    const login = () => {
-        isAuthenticated.value = true;
-    }
+  const login = (role) => {
+    isAuthenticated.value = true;
+    userRole.value = role; // Set role upon login
+  };
 
-    const logout = () => {
-        isAuthenticated.value = false;
-    }
+  const logout = () => {
+    isAuthenticated.value = false;
+    userRole.value = null; // Clear role upon logout
+  };
 
-    return {
-        isAuthenticated,
-        login,
-        logout
-    };
+  return {
+    isAuthenticated,
+    userRole,
+    login,
+    logout,
+  };
 }

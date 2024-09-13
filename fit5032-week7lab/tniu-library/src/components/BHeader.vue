@@ -1,6 +1,4 @@
 <template>
-  <!-- Using Bootstrap's Header template (starter code) -->
-  <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
@@ -12,19 +10,26 @@
         <li class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active"> About </router-link>
         </li>
-        <li class="nav-item">
+
+        <!-- Conditionally render Firebase Login/Register links if not authenticated -->
+        <li class="nav-item" v-if="!isAuthenticated">
           <router-link to="/FireLogin" class="nav-link" active-class="active">Firebase Login</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="!isAuthenticated">
           <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link>
         </li>
 
-        <!-- Conditionally render based on authentication status -->
+        <!-- Conditionally render Log in/Log out based on authentication status -->
         <li class="nav-item" v-if="!isAuthenticated">
           <router-link to="/login" class="nav-link" active-class="active"> Log in </router-link>
         </li>
         <li class="nav-item" v-else>
           <button class="nav-link" @click="handleLogout">Log out</button>
+        </li>
+
+        <!-- Conditionally render Admin Dashboard for admin users -->
+        <li class="nav-item" v-if="isAuthenticated && userRole === 'admin'">
+          <router-link to="/admin-dashboard" class="nav-link" active-class="active">Dashboard</router-link>
         </li>
       </ul>
     </header>
@@ -32,17 +37,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import router from '../router'
-import { useAuth } from '../router/authenticate'
+import { getAuth, signOut } from 'firebase/auth';
+import router from '../router';
+import { useAuth } from '../router/authenticate';
 
-const { isAuthenticated, logout } = useAuth()
+const { isAuthenticated, userRole, logout } = useAuth();
+const auth = getAuth();
 
 const handleLogout = () => {
-  logout()
-  alert('You have been logged out.')
-  router.push({ name: 'Login' })
-}
+  console.log("Current user before logout:", auth.currentUser); // Log current user before logout
+
+  signOut(auth)
+    .then(() => {
+      logout(); // Clear authentication state
+      alert('You have been logged out.');
+      router.push({ name: 'Home' }); // Redirect to home page after logout
+    })
+    .catch((error) => {
+      console.log('Error during sign out:', error);
+      alert('An error occurred while logging out.');
+    });
+};
 </script>
 
 <style scoped>
