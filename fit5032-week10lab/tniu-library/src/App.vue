@@ -1,18 +1,33 @@
-<script setup>
-import BHeader from './components/BHeader.vue'
-</script>
-
 <template>
-<div>
-  <header>
-    <BHeader />
-  </header>
-
-  <main class="container">
-    <router-view></router-view>
-  </main>
-</div>
+  <div class="main-container">
+    <!-- Conditionally show the header using v-if -->
+    <header v-if="showHeader">
+      <BHeader />
+    </header>
+    <main class="main-box">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
+
+<script>
+import BHeader from './components/BHeader.vue';
+import CountBookAPI from './views/CountBookAPI.vue';
+
+export default {
+  name: 'App',
+  components: {
+    BHeader,
+    CountBookAPI
+  },
+  computed: {
+    // Only show the header if the route is not 'CountBookAPI'
+    showHeader() {
+      return this.$route.name !== 'CountBookAPI';
+    }
+  }
+};
+</script>
 
 <style>
 /* Center the container and header links */
