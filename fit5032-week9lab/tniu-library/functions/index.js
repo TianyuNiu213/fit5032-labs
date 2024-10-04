@@ -34,7 +34,7 @@ exports.capitalizeBookData = functions.firestore
     .onCreate((snap, context) => {
       const book = snap.data();
       const capitalizedBook = {
-        ...book,
+        ...book,  //Copies all fields (e.g., isbn. etc.) from the original book object
         name: book.name.toUpperCase(),
       };
       return snap.ref.set(capitalizedBook, {merge: true});
