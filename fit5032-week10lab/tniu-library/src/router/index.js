@@ -7,7 +7,8 @@ import AdminDashboard from '../views/AdminDashboard.vue';
 import LoginView from '../views/LoginView.vue';
 import AddBookView from '../views/AddBookView.vue';
 import BookListView from '../views/BookListView.vue';
-import GetBookCountView from '../views/GetBookCountView.vue'
+import GetBookCountView from '../views/GetBookCountView.vue';
+import WeatherView from '../views/WeatherView.vue';
 import { useAuth } from './authenticate';
 
 const routes = [
@@ -17,6 +18,7 @@ const routes = [
   { path: '/FireRegister', name: 'FireRegister', component: FirebaseRegisterView },
   { path: '/addbook', name: 'AddBook', component: AddBookView},
   { path: '/getBookCount', name: 'GetBookCount', component: GetBookCountView},
+  { path: '/weather', name: 'Weather', component: WeatherView},
   { path: '/booklist', name: 'Booklist', component: BookListView},
   { path: '/login', name: 'Login', component: LoginView },
   { path: '/admin-dashboard', name: 'AdminDashboard', component: AdminDashboard, meta: { requiresAdmin: true } },
