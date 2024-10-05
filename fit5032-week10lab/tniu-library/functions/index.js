@@ -30,15 +30,31 @@ exports.countBooks = onRequest((req, res) => {
 });
 
 exports.capitalizeBookData = functions.firestore
-    .document("books/{bookId}")
-    .onCreate((snap, context) => {
-      const book = snap.data();
-      const capitalizedBook = {
-        ...book,  //Copies all fields (e.g., isbn. etc.) from the original book object
-        name: book.name.toUpperCase(),
-      };
-      return snap.ref.set(capitalizedBook, {merge: true});
+  .document("books/{bookId}")
+  .onCreate((snap, context) => {
+    const book = snap.data();
+    const capitalizedBook = {
+      ...book,  //Copies all fields (e.g., isbn. etc.) from the original book object
+      name: book.name.toUpperCase(),
+    };
+    return snap.ref.set(capitalizedBook, {merge: true});
+});
+
+exports.getAllBooks = onRequest((req, res) => {
+    cors(req, res, async () => {
+      try {
+        const booksCollection = admin.firestore().collection('books');
+        const snapshot = await booksCollection.get();
+        const books = snapshot.docs.map(doc => doc.data()); 
+        
+        res.status(200).json(books);
+      } catch (error) {
+        console.error('Error getting books:', error.message);
+        res.status(500).send('Error getting books');
+      }
     });
+});
+    
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 

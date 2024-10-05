@@ -10,6 +10,7 @@ import BookListView from '../views/BookListView.vue';
 import GetBookCountView from '../views/GetBookCountView.vue';
 import WeatherView from '../views/WeatherView.vue';
 import CountBookAPI from '../views/CountBookAPI.vue';
+import GetAllBookAPI from '../views/GetAllBookAPI.vue';   
 import { useAuth } from './authenticate';
 
 const routes = [
@@ -21,6 +22,7 @@ const routes = [
   { path: '/getBookCount', name: 'GetBookCount', component: GetBookCountView},
   { path: '/weather', name: 'Weather', component: WeatherView},
   { path: '/countbook', name: 'Countbook', component: CountBookAPI},
+  {path: '/GetAllBookAPI', name: 'GetAllBookAPI', component: GetAllBookAPI},
   { path: '/booklist', name: 'Booklist', component: BookListView},
   { path: '/login', name: 'Login', component: LoginView },
   { path: '/admin-dashboard', name: 'AdminDashboard', component: AdminDashboard, meta: { requiresAdmin: true } },

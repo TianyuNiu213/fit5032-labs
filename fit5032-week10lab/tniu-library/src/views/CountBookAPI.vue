@@ -1,5 +1,7 @@
 <template>
-  <pre>{{jsondata}}</pre>
+  <div class="json-container">
+    <pre>{{ jsondata }}</pre>
+  </div>
 </template>
 
 <script>
@@ -24,9 +26,22 @@ export default {
       } catch (error) {
         console.error('Error fetching book count:', error);
         this.error = error;
-        this.count = null;
+        this.jsondata = null;
       }
     },
   },
 };
 </script>
+
+<style scoped>
+.json-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Center the text inside the pre tag */
+}
+pre {
+  white-space: pre-wrap; /* Ensure long JSON strings wrap to the next line */
+  word-break: break-word; /* Break words if they are too long */
+}
+</style>
